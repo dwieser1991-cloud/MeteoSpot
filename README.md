@@ -5,7 +5,7 @@ It shows the current temperature for your own location and for any place you sea
 
 > Training project created during the retraining as an IT specialist for application development (Fachinformatiker/in für Anwendungsentwicklung).
 
-**Live demo:** https://YOUR-USERNAME.github.io/meteospot/
+**Live demo:** https://dwieser1991-cloud.github.io/MeteoSpot
 
 ## Features
 
