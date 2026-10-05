@@ -56,3 +56,9 @@ script.js    search, API requests, geolocation, map
 ## Scope
 
 Not part of this project: own backend server, database, user accounts and offline mode.
+
+License
+
+The source code of this project is released under the MIT License.
+
+Third-party data and libraries (Open-Meteo, GeoNames, Photon, OpenStreetMap, Leaflet) are not covered by this license and remain subject to their own terms. See "Data sources and attribution" above.
