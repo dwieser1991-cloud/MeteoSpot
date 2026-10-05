@@ -57,7 +57,7 @@ script.js    search, API requests, geolocation, map
 
 Not part of this project: own backend server, database, user accounts and offline mode.
 
-License
+''License
 
 The source code of this project is released under the MIT License.
 
