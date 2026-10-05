@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeteoSpot – Wetter aktuell</title>
+    <link rel="stylesheet" href="main.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="weather-card">
+        <h1>MeteoSpot</h1>
+        powered by Daniel Wieser
+        <div class="search-box">
+            <label for="city-search">Ort suchen</label>
+            <input
+                id="city-search"
+                type="search"
+                placeholder="z. B. Berlin oder Heidelberg"
+                autocomplete="off"
+                spellcheck="false"
+                aria-describedby="search-status"
+            >
+
+            <div id="city-results-group" hidden>
+                <label for="city-results">Passenden Ort auswählen</label>
+                <select id="city-results">
+                    <option value="">Bitte einen Ort auswählen …</option>
+                </select>
+            </div>
+
+            <p id="search-status" class="search-status" role="status">
+                Ort eingeben und Enter drücken.
+            </p>
+        </div>
+
+        <section class="weather-block" aria-labelledby="own-heading">
+            <h2 id="own-heading">Mein Standort</h2>
+            <div id="own-city-name" class="location">Standort wird ermittelt …</div>
+            <div id="own-weather" class="weather loading" role="status">
+                Bitte erlaube den Standortzugriff im Browser.
+            </div>
+        </section>
+
+        <section class="weather-block" id="selected-block" aria-labelledby="selected-heading" hidden>
+            <h2 id="selected-heading">Gewählter Ort</h2>
+            <div id="city-name" class="location"></div>
+            <div id="weather" class="weather" role="status"></div>
+        </section>
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+        <div id="map"></div>
+
+        <div class="info">
+            <strong>Wetterdaten und Ortssuche:</strong>
+            <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a><br>
+            <strong>Ortsdaten (Suche):</strong>
+            <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer">GeoNames</a><br>
+            <strong>Standortname:</strong>
+            <a href="https://photon.komoot.io/" target="_blank" rel="noopener noreferrer">Photon</a><br>
+            mit Daten von
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende</a><br>
+            <strong>Karte:</strong> 
+            <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a>
+            mit Kacheln von OpenStreetMap
+        </div>
+    </main>
+</body>
+</html>
