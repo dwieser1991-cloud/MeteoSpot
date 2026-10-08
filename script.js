@@ -1,15 +1,15 @@
-// 1. HTML-Elemente und gespeicherte Werte
+// HTML-Elemente und Werte
 const searchInput = document.getElementById('city-search');
 const citySelect = document.getElementById('city-results');
 const resultsGroup = document.getElementById('city-results-group');
 const searchStatus = document.getElementById('search-status');
 
-// Bereich "Gewählter Ort"
+// Ausgewählter Ort
 const selectedBlock = document.getElementById('selected-block');
 const cityName = document.getElementById('city-name');
 const weatherElement = document.getElementById('weather');
 
-// Bereich "Mein Standort"
+// Mein Standort
 const ownCityName = document.getElementById('own-city-name');
 const ownWeather = document.getElementById('own-weather');
 
@@ -17,7 +17,7 @@ let cities = [];
 let map = null;     // Leaflet-Karte, wird beim ersten Ort angelegt
 let marker = null;  // Marker auf der Karte
 
-// 2. Hilfsfunktionen: Daten holen, Ortsnamen zusammensetzen, Karte anzeigen
+// Daten fetchen, Ortsnamen zusammensetzen, Karte anzeigen
 async function fetchJson(url) {
     const response = await fetch(url);
     if (!response.ok) {
@@ -52,7 +52,7 @@ function showMap(latitude, longitude) {
     }
 }
 
-// 3. Ort suchen: Enter startet die Anfrage, die Treffer kommen ins Dropdown
+// Ortssuche startet bei Enter
 searchInput.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault();
@@ -101,7 +101,7 @@ async function searchCities() {
     searchInput.focus();
 }
 
-// 4. Auswahl im Dropdown: Ortsname anzeigen, Wetter laden, Karte setzen
+// Auswahl im Dropdown (Ortsname anzeigen, Wetter laden, Karte setzen)
 citySelect.addEventListener('change', function() {
     if (citySelect.disabled || citySelect.value === '') return;
     const city = cities[Number(citySelect.value)];
@@ -112,7 +112,7 @@ citySelect.addEventListener('change', function() {
     showMap(city.latitude, city.longitude);
 });
 
-// 5. Aktuelle Temperatur laden und im übergebenen Zielelement anzeigen
+// Aktuelle Temperatur laden und im übergebenen Zielelement anzeigen
 async function fetchWeather(latitude, longitude, target) {
     // Das Dropdown wird nur gesperrt, wenn der gewählte Ort geladen wird.
     const isSelected = (target === weatherElement);
@@ -145,7 +145,7 @@ async function fetchWeather(latitude, longitude, target) {
     if (isSelected) citySelect.disabled = false;
 }
 
-// 6. Eigener Standort: Der Browser liefert Koordinaten, Photon den Ortsnamen
+// Eigener Standort: Der Browser liefert Koordinaten, Photon den Ortsnamen
 async function showOwnLocation(position) {
     const latitude = position.coords.latitude;
     const longitude = position.coords.longitude;
@@ -171,11 +171,17 @@ async function showOwnLocation(position) {
 function locationError(error) {
     if (error) console.error(error);
     ownCityName.textContent = 'Standort nicht verfügbar';
-    ownWeather.textContent = 'Bitte erlaube den Standortzugriff oder nutze die Ortssuche.';
+    let message = 'Bitte nutze die Ortssuche.';
+    if (error && error.code === 1) {
+        message = 'Der Standortzugriff wurde verweigert. Bitte erlaube ihn im Browser oder nutze die Ortssuche.';
+    } else if (error && error.code === 3) {
+        message = 'Die Standortermittlung hat zu lange gedauert. Bitte nutze die Ortssuche.';
+    }
+    ownWeather.textContent = message;
     ownWeather.classList.remove('loading');
 }
 
-// Beim Laden der Seite einmal den aktuellen Standort anfragen
+// Beim Seitenaufruf den Standort abfragen, bei Fehlschlag Meldung anzeigen
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(showOwnLocation, locationError, { timeout: 10000 });
 } else {
