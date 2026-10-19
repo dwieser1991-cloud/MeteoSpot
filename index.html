@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,20 +9,16 @@
     <link rel="icon" href="weather.png" type="images/jpg">
     <script src="script.js" defer></script>
 </head>
+
 <body>
+    <video id="weather-bg" autoplay muted loop playsinline hidden></video>
     <main class="weather-card">
         <h1>MeteoSpot</h1>
-<p class="subtitle">powered by Daniel Wieser</p>
+        <p class="subtitle">powered by Daniel Wieser</p>
         <div class="search-box">
             <label for="city-search">Ort suchen</label>
-            <input
-                id="city-search"
-                type="search"
-                placeholder="z. B. Berlin oder Heidelberg"
-                autocomplete="off"
-                spellcheck="true"
-                aria-describedby="search-status"
-            >
+            <input id="city-search" type="search" placeholder="z. B. Berlin oder Heidelberg" autocomplete="off"
+                spellcheck="true" aria-describedby="search-status">
 
             <div id="city-results-group" hidden>
                 <label for="city-results">Passenden Ort auswählen</label>
@@ -35,13 +32,15 @@
             </p>
         </div>
 
-<section class="weather-block" aria-labelledby="own-heading">
-    <h2 id="own-heading">Mein Standort</h2>
-    <div id="own-city-name" class="location">Standort wird ermittelt …</div>
-    <p class="metric">Aktuelle Temperatur:</p>
-    <div id="own-weather" class="weather loading" role="status"></div>
-</section>
+        <!---Block der eigenen Stadt--->
+        <section class="weather-block" aria-labelledby="own-heading">
+            <h2 id="own-heading">Mein Standort</h2>
+            <div id="own-city-name" class="location">Standort wird ermittelt …</div>
+            <p class="metric">Aktuelle Temperatur:</p>
+            <div id="own-weather" class="weather loading" role="status"></div>
+        </section>
 
+        <!---Block der gewählten Stadt--->
         <section class="weather-block" id="selected-block" aria-labelledby="selected-heading" hidden>
             <h2 id="selected-heading">Gewählter Ort</h2>
             <div id="city-name" class="location"></div>
@@ -49,10 +48,12 @@
             <div id="weather" class="weather" role="status"></div>
         </section>
 
+        <!---Karte wird eingebunden--->
         <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <div id="map"></div>
 
+        <!---Lizenzen--->
         <div class="info">
             <strong>Wetterdaten und Ortssuche:</strong>
             <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a><br>
@@ -61,11 +62,14 @@
             <strong>Standortname:</strong>
             <a href="https://photon.komoot.io/" target="_blank" rel="noopener noreferrer">Photon</a>
             mit Daten von
-            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap-Mitwirkende</a><br>
-            <strong>Karte:</strong> 
+            <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">©
+                OpenStreetMap-Mitwirkende</a><br>
+            <strong>Karte:</strong>
             <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer">Leaflet</a>
             mit Kacheln von OpenStreetMap
         </div>
+        <br>
     </main>
 </body>
+
 </html>
