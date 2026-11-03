@@ -1,4 +1,4 @@
-//HTML-Elemente damit Java später darauf zugreifen und Inhalte verändern kann
+//HTML-Elemente damit JavaScript später darauf zugreifen und Inhalte verändern kann
 const searchInput = document.getElementById('city-search');
 const citySelect = document.getElementById('city-results');
 const resultsGroup = document.getElementById('city-results-group');
@@ -161,8 +161,6 @@ async function fetchWeather(latitude, longitude, target) {
         if (!Number.isFinite(temperature) || typeof unit !== 'string') {
             throw new Error('Keine gültige Temperatur erhalten.');
         }
-        //Wirft in der Browser Konsole den aktuellen Wettercode aus (Test)
-        console.log('Wettercode:', data.current.weather_code);
         //Setzt Hintergrundvideo anhand von aktuellem Wettercode
         setBackgroundVideo(data.current.weather_code);
         //Daten erfolgreich aufgerufen und werden angezeigt.

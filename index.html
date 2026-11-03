@@ -6,11 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MeteoSpot – Wetter aktuell</title>
     <link rel="stylesheet" href="main.css">
-    <link rel="icon" href="weather.png" type="images/jpg">
+    <link rel="icon" href="weather.png" type="png">
     <script src="script.js" defer></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 
 <body>
+    <!-- Kleiner Bonus: Zeige dem Nutzer, dass er eingeloggt ist, und gib ihm einen Logout-Button -->
+    <div style="position: absolute; top: 10px; right: 10px; z-index: 1001; background: rgba(255,255,255,0.8); padding: 5px 10px; border-radius: 5px; font-family: sans-serif; font-size: 12px;">
+        Hallo, <?php echo htmlspecialchars($_SESSION['username']); ?>! | <a href="logout.php">Ausloggen</a>
+    </div>
+
     <video id="weather-bg" autoplay muted loop playsinline hidden></video>
     <main class="weather-card">
         <h1>MeteoSpot</h1>
@@ -49,8 +56,6 @@
         </section>
 
         <!---Karte wird eingebunden--->
-        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
         <div id="map"></div>
 
         <!---Lizenzen--->
